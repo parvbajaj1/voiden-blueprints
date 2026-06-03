@@ -47,11 +47,16 @@ export default (ctx: PluginContext) => ({
   onload: async () => {
     context = ctx;
 
-    await loadBlueprints(ctx);
-    await refreshSlashGroup();
+    // Register the component synchronously before any await.
+    // Voiden does not await async onload, so tab session restoration fires
+    // before any await resolves — the component must be in the registry by then.
+    managerComponent = createBlueprintManager(ctx, refreshSlashGroup);
 
-    unsubscribe = subscribeBlueprints(() => {
-      void refreshSlashGroup();
+    ctx.registerPanel("main", {
+      id: TAB_ID,
+      title: "Blueprints",
+      icon: "Blocks",
+      component: managerComponent,
     });
 
     ctx.registerVoidenExtension(
@@ -63,8 +68,6 @@ export default (ctx: PluginContext) => ({
         await refreshSlashGroup();
       }),
     );
-
-    managerComponent = createBlueprintManager(ctx, refreshSlashGroup);
 
     (ctx as any).registerStatusBarItem({
       id: PLUGIN_ID,
@@ -91,6 +94,13 @@ export default (ctx: PluginContext) => ({
           component: managerComponent,
         });
       },
+    });
+
+    await loadBlueprints(ctx);
+    await refreshSlashGroup();
+
+    unsubscribe = subscribeBlueprints(() => {
+      void refreshSlashGroup();
     });
   },
 

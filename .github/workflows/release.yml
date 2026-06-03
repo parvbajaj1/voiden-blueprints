@@ -27,11 +27,15 @@ jobs:
       - name: Build main-process bundle
         run: node build-main.mjs
 
+      - name: Generate manifest
+        # Inlines any local icon as base64 → writes dist/manifest.json
+        run: node generate-manifest.mjs
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            manifest.json
+            dist/manifest.json
             changelog.json
-            dist/main.js
+            dist/test.js
             src/skill.md
