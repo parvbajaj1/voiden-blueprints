@@ -37,5 +37,5 @@ jobs:
           files: |
             dist/manifest.json
             changelog.json
-            dist/test.js
+            dist/main.js
             src/skill.md

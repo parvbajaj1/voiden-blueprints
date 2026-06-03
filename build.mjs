@@ -41,7 +41,7 @@ await build({
   entryPoints: ['./src/plugin.ts'],
   bundle: true,
   format: 'esm',
-  outfile: `dist/${pluginId}.js`,
+  outfile: `dist/main.js`,
   platform: 'browser',
   target: 'es2020',
   minify: true,
