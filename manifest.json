@@ -1,0 +1,55 @@
+{
+  "id": "blueprints",
+  "name": "Blueprints",
+  "description": "Save and reuse common API request structures as blueprints. Insert them anywhere with a slash command.",
+  "version": "1.0.8",
+  "voidenVersion": ">=2.0.0",
+  "author": "Parv Bajaj",
+  "icon": "src/blueprint.png",
+  "type": "community",
+  "priority": 30,
+  "mainProcess": false,
+  "permissions": [
+    "filesystem"
+  ],
+  "features": [
+    "Create blueprints from scratch or copy from any existing .void file",
+    "Blueprints are native .void files — no custom format or lock-in",
+    "Shared blueprints live in .blueprints/ and are committed to Git",
+    "Local blueprints live in .voiden/blueprints/ and stay off Git",
+    "Toggle shared/local per blueprint with a single click",
+    "Slash commands auto-generated from filenames (blueprint-avatar.void → /bp-avatar)",
+    "Conflict detection — blueprints that clash with the current section are disabled in the slash menu",
+    "Always reads fresh content from disk on every invocation",
+    "Enable or disable individual blueprints without deleting them",
+    "Search and filter blueprints in the manager"
+  ],
+  "capabilities": {
+    "ui": {
+      "buttons": [
+        {
+          "id": "voiden-blueprints-statusbar",
+          "location": "statusbar-left",
+          "icon": "Blocks",
+          "tooltip": "Open Blueprints Manager",
+          "description": "Opens the Blueprints Manager as a tab in the main editor"
+        }
+      ],
+      "description": "Registers a status bar button that opens the Blueprints Manager"
+    },
+    "slashCommands": {
+      "groups": [
+        "blueprints"
+      ],
+      "commands": [
+        "/bp-<name>"
+      ],
+      "description": "Registers a /bp-<name> slash command for each blueprint. Commands are auto-generated from filenames and respect singleton block constraints per section."
+    }
+  },
+  "dependencies": {
+    "core": "^1.0.0",
+    "sdk": "^1.0.0"
+  },
+  "readme": "# Blueprints\n\nBlueprints lets you save reusable API request structures as `.void` files and insert them into any page with a slash command.\n\n## How it works\n\n1. Click **Blueprints** in the status bar to open the manager\n2. Create a new blueprint from scratch, or copy content from an existing `.void` file\n3. Give it a name — the file is saved as `blueprint-<name>.void` and a `/bp-<name>` slash command is created automatically\n4. Open any page, type `/bp-` and select your blueprint to insert it\n\n## Shared vs Local\n\n| | Path | Git |\n|---|---|---|\n| **Shared** | `.blueprints/` | Committed — shared with your team |\n| **Local** | `.voiden/blueprints/` | Ignored — stays on your machine |\n\nToggle between shared and local at any time from the manager or directly on each card.\n\n## Conflict detection\n\nBlueprints that contain a block type that already exists in the current section (e.g. an endpoint block when one is already present) are automatically disabled in the slash menu. This prevents duplicate singleton blocks.\n\n## File naming\n\n- File on disk: `blueprint-get-user.void`\n- Slash command: `/bp-get-user`\n- Display name: **Blueprint Get User**\n\n## Tips\n\n- After editing a blueprint file directly in the editor, the next slash command invocation always reads the latest saved version — no refresh needed.\n- Use the **↻** button in the manager if newly created files aren't appearing in the list.\n- Blueprints can be enabled or disabled individually without deleting them."
+}

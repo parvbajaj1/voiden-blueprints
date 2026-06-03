@@ -1,0 +1,13 @@
+[
+  {
+    "version": "1.0.0",
+    "date": "2026-06-02",
+    "title": "Initial release",
+    "description": "First release of Blueprints.",
+    "changes": {
+      "Added": [
+        "Initial plugin scaffold"
+      ]
+    }
+  }
+]
