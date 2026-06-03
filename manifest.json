@@ -2,7 +2,7 @@
   "id": "blueprints",
   "name": "Blueprints",
   "description": "Save and reuse common API request structures as blueprints. Insert them anywhere with a slash command.",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "voidenVersion": ">=2.0.0",
   "author": "Parv Bajaj",
   "icon": "src/blueprint.png",
