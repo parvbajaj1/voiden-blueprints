@@ -1,5 +1,16 @@
 [
   {
+    "version": "1.0.9",
+    "date": "2026-06-03",
+    "title": "Fix panel restore on startup",
+    "description": "Fixes 'panel component not available' error when reopening the app with the Blueprints tab open.",
+    "changes": {
+      "Fixed": [
+        "Blueprints panel shows 'panel component not available' when app is reopened with the tab already open"
+      ]
+    }
+  },
+  {
     "version": "1.0.0",
     "date": "2026-06-02",
     "title": "Initial release",
