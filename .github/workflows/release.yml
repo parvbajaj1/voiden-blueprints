@@ -31,7 +31,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            manifest.json
+            dist/manifest.json
             changelog.json
             dist/main.js
             src/skill.md
